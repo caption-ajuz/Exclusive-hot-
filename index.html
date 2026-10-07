@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CampusHub | Private Archives & Leaked Clips</title>
+<meta property="og:title" content="Exclusive: Talento Fest Leaked Tapes">
+<meta property="og:description" content="1080p HD Uncut footage from Markazul Hidaya hostel vaults. Access restricted.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-main: #0e0e10;
+    --bg-card: #18181b;
+    --hub-orange: #ff9000;
+    --text-white: #ffffff;
+    --text-gray: #8d93a3;
+    --accent-red: #ff334b;
+    --scan-cyan: #00f3ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-main);
+    color: var(--text-white);
+    font-family: 'Inter', -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+  }
+
+  /* Header Branding */
+  header {
+    background: #000;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .brand {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+  }
+  .brand span {
+    background: var(--hub-orange);
+    color: #000;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 2px;
+  }
+  .vip-pill {
+    font-size: 11px;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    padding: 4px 8px;
+    border-radius: 12px;
+    color: var(--hub-orange);
+    font-weight: 600;
+  }
+
+  .wrap { max-width: 480px; margin: 0 auto; padding: 16px; }
+  .screen { display: none; }
+  .screen.on { display: block; }
+
+  /* Age Gate Screen */
+  .gate { text-align: center; padding-top: 50px; }
+  .badge-18 {
+    display: inline-block;
+    border: 3px solid var(--accent-red);
+    color: var(--accent-red);
+    font-weight: 900;
+    font-size: 28px;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    line-height: 58px;
+    margin-bottom: 18px;
+  }
+  .gate h1 { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+  .gate p { font-size: 14px; color: var(--text-gray); line-height: 1.5; margin-bottom: 24px; }
+  .disclaimer {
+    background: #1f1414;
+    border: 1px solid #4a1919;
+    color: #ff9999;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  /* Buttons */
+  .btn-hub {
+    display: block;
+    width: 100%;
+    background: var(--hub-orange);
+    color: #000;
+    border: 0;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.1s ease;
+  }
+  .btn-hub:active { transform: scale(0.98); }
+  .btn-red { background: var(--accent-red); color: #fff; margin-top: 20px; }
+
+  /* Gallery Stream */
+  .section-tag {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--hub-orange);
+    margin-bottom: 4px;
+  }
+  .feed-title { font-size: 20px; font-weight: 800; margin-bottom: 16px; }
+  .thumb-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid #242429;
+  }
+  .thumb-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #000;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(20px) brightness(0.65);
+    transition: filter 0.6s ease, transform 0.6s ease;
+  }
+  .thumb-wrap.open img { filter: none; transform: none; }
+  .hd-pill {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.8);
+    color: var(--hub-orange);
+    font-size: 10px;
+    font-weight: 900;
+    padding: 3px 5px;
+    border-radius: 3px;
+    border: 1px solid var(--hub-orange);
+  }
+  .dur-pill {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .click-mask {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.4);
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .play-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--hub-orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+  }
+  .thumb-wrap.open .click-mask { display: none; }
+  .info-bar { padding: 10px 12px; }
+  .info-bar h3 { font-size: 14px; font-weight: 600; line-height: 1.3; }
+  .meta-stats {
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--text-gray);
+    margin-top: 6px;
+  }
+
+  /* Scan / Face Match */
+  .scan-view { text-align: center; padding-top: 30px; }
+  .scan-frame {
+    position: relative;
+    border: 2px solid #2e2e36;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 18px 0;
+    background: #000;
+    aspect-ratio: 4/3;
+  }
+  .scan-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .laser-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--scan-cyan);
+    box-shadow: 0 0 16px 3px var(--scan-cyan);
+    top: 0;
+    display: none;
+  }
+  .scanning .laser-line {
+    display: block;
+    animation: sweep 1.5s ease-in-out infinite alternate;
+  }
+  @keyframes sweep { from { top: 0; } to { top: calc(100% - 3px); } }
+  .target-box {
+    position: absolute;
+    border: 2px solid var(--scan-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .found .target-box { opacity: 1; }
+  #scanLog { font-family: monospace; color: var(--scan-cyan); font-size: 13px; min-height: 20px; }
+
+  /* Final Reveal */
+  .reveal-view { text-align: center; padding-top: 24px; }
+  .tag-match {
+    background: #143224;
+    border: 1px solid #22c55e;
+    color: #4ade80;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: inline-block;
+  }
+  .main-name {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--hub-orange);
+    margin: 12px 0 6px;
+    text-transform: uppercase;
+  }
+  .quote { font-size: 15px; color: #d4d4d8; line-height: 1.5; margin: 12px 0; }
+  .stamp-tag {
+    display: inline-block;
+    border: 2px dashed var(--accent-red);
+    color: var(--accent-red);
+    font-size: 18px;
+    font-weight: 900;
+    padding: 6px 14px;
+    margin: 16px 0;
+    transform: rotate(-3deg);
+  }
+  .polaroid {
+    background: #fff;
+    padding: 10px 10px 30px 10px;
+    border-radius: 4px;
+    margin-top: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    transform: rotate(2deg);
+  }
+  .polaroid img { width: 100%; border-radius: 2px; display: block; }
+  .polaroid-caption { color: #111; font-weight: 700; font-size: 13px; margin-top: 8px; }
+  canvas { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+</style>
+</head>
+<body>
+
+<canvas id="fx"></canvas>
+
+<header>
+  <div class="brand">Campus<span>Hub</span></div>
+  <div class="vip-pill">PREMIUM VAULT</div>
+</header>
+
+<div class="wrap">
+
+  <!-- 1. AGE GATE -->
+  <section class="screen on" id="gate">
+    <div class="gate">
+      <div class="badge-18">18+</div>
+      <h1>Restricted Access</h1>
+      <p>This folder contains uncompressed leaks( leatest Edition).</p>
+      <div class="disclaimer">
+        <b>Warning:</b> Uncensored early archives. Individuals captured before their current glow-up, beards, and confidence levels.
+      </div>
+      <button class="btn-hub" id="enterBtn">I am 18+ or older — Enter</button>
+    </div>
+  </section>
+
+  <!-- 2. HUB FEED GALLERY -->
+  <section class="screen" id="gal">
+    <div class="section-tag">Hot & Trending Leaks</div>
+    <h2 class="feed-title">Campus Tape Archives</h2>
+    <div id="cards"></div>
+    <button class="btn-hub btn-red" id="goScan" style="display:none;">Run Biometric ID Search</button>
+  </section>
+
+  <!-- 3. SCANNER -->
+  <section class="screen" id="scan">
+    <div class="scan-view">
+      <div class="section-tag">Automated Forensics</div>
+      <h2 style="font-size: 20px; font-weight: 800; margin-top: 4px;">De-anonymizing Subject...</h2>
+      <div class="scan-frame" id="scanbox">
+        <img id="targetImg" alt="Suspect">
+        <div class="laser-line"></div>
+        <div class="target-box" id="faceBox"></div>
+      </div>
+      <div id="scanLog">Loading neural weights...</div>
+    </div>
+  </section>
+
+  <!-- 4. REVEAL -->
+  <section class="screen" id="rev">
+    <div class="reveal-view">
+      <div class="tag-match">IDENTITY CONFIRMED (99.8%)</div>
+      <div class="main-name" id="who"></div>
+      <p class="quote" id="line1"></p>
+      <p class="quote" id="line2"></p>
+      <div class="stamp-tag">YOU LEFT BEFORE TALENTO FEST!</div>
+      
+      <div class="polaroid" id="polaroidBox">
+        <img id="babyPhoto" src="" alt="Origin Story">
+        <div class="polaroid-caption">Where it all started 🍼👶</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  /* ===== CUSTOMIZE DETAILS HERE ===== */
+  var NAME = "Ameen";
+  var TARGET_IMG = "photos/p1.jpg";     // The picture of Ameen to scan
+  var BABY_IMG = "photos/baby.jpg";     // Ameen's baby photo
+  var FACE_COORDS = {l: 42, t: 30, w: 18, h: 25}; // Face box percentage: left, top, width, height
+  var PHOTOS = ["p1","p2","p3","p4","p5","p6","p7","p8"]; // Image filenames (.jpg)
+  
+  var TITLES = [
+    "LEAKED: Hostel corridor midnight antics",
+    "Stage rehearsal gone completely wrong [UNCUT]",
+    "Rare footage before Talento opening night",
+    "Room 402 secret meeting archives",
+    "The one who disappeared before the fest...",
+    "Backstage greenroom hidden clip",
+    "Lost canteen CCTV archives",
+    "VIP Access: Final curtain call"
+  ];
+  /* ================================== */
+
+  var $ = function(id) { return document.getElementById(id); };
+  var openedCount = 0;
+
+  function setScreen(id) {
+    document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); });
+    $(id).classList.add('on');
+    window.scrollTo(0,0);
+  }
+
+  $('enterBtn').onclick = function() {
+    var container = $('cards');
+    container.innerHTML = '';
+    
+    PHOTOS.forEach(function(item, idx){
+      var duration = "0:" + Math.floor(18 + Math.random() * 40);
+      var views = (Math.random() * (14.2 - 2.1) + 2.1).toFixed(1) + "K";
+      var title = TITLES[idx % TITLES.length];
+      
+      var card = document.createElement('div');
+      card.className = 'thumb-card';
+      card.innerHTML = 
+        '<div class="thumb-wrap">' +
+          '<div class="hd-pill">1080p HD</div>' +
+          '<img src="photos/' + item + '.jpg" alt="Frame ' + (idx+1) + '" loading="lazy">' +
+          '<div class="click-mask">' +
+            '<div class="play-icon">&#9658;</div>' +
+            '<span>CLICK TO UNLOCK</span>' +
+          '</div>' +
+          '<div class="dur-pill">' + duration + '</div>' +
+        '</div>' +
+        '<div class="info-bar">' +
+          '<h3>' + title + '</h3>' +
+          '<div class="meta-stats">' +
+            '<span>' + views + ' views</span>' +
+            '<span>98.6% rating</span>' +
+          '</div>' +
+        '</div>';
+
+      var wrap = card.querySelector('.thumb-wrap');
+      wrap.onclick = function() {
+        if(!wrap.classList.contains('open')) {
+          wrap.classList.add('open');
+          openedCount++;
+          if (openedCount >= 3) {
+            $('goScan').style.display = 'block';
+          }
+        }
+      };
+      container.appendChild(card);
+    });
+
+    setScreen('gal');
+  };
+
+  $('goScan').onclick = function() {
+    $('targetImg').src = TARGET_IMG;
+    var b = $('faceBox');
+    b.style.left = FACE_COORDS.l + '%';
+    b.style.top = FACE_COORDS.t + '%';
+    b.style.width = FACE_COORDS.w + '%';
+    b.style.height = FACE_COORDS.h + '%';
+
+    setScreen('scan');
+    var box = $('scanbox');
+    box.classList.add('scanning');
+
+    var logs = [
+      "Accessing Talento registration log...",
+      "Matching faces against Markazul Hidaya Kombam database...",
+      "Warning: High growth rate detected...",
+      "Suspect located. Preparing identity report."
+    ];
+    
+    var step = 0;
+    var interval = setInterval(function(){
+      if(step < logs.length) {
+        $('scanLog').textContent = logs[step++];
+      } else {
+        clearInterval(interval);
+        box.classList.remove('scanning');
+        box.classList.add('found');
+        setTimeout(showFinalReveal, 1000);
+      }
+    }, 1200);
+  };
+
+  function showFinalReveal() {
+    $('who').textContent = NAME;
+    $('line1').textContent = "Look how big you got! You left Markazul Hidaya Kombam before Talento, but you couldn't escape the archives.";
+    $('line2').textContent = "We found the original source file from day one:";
+    $('babyPhoto').src = BABY_IMG;
+    
+    setScreen('rev');
+    launchConfetti();
+  }
+
+  function launchConfetti() {
+    var c = $('fx'), ctx = c.getContext('2d'), W = c.width = innerWidth, H = c.height = innerHeight;
+    var colors = ['#ff9000', '#ffffff', '#ff334b', '#00f3ff'], parts = [];
+    for(var i = 0; i < 120; i++) {
+      parts.push({
+        x: W / 2, y: H * 0.4,
+        vx: (Math.random() - 0.5) * 14,
+        vy: -Math.random() * 12 - 2,
+        s: Math.random() * 6 + 4,
+        color: colors[i % 4]
+      });
+    }
+    var frame = 0;
+    (function loop() {
+      ctx.clearRect(0,0,W,H);
+      parts.forEach(function(p){
+        p.vy += 0.35; p.x += p.vx; p.y += p.vy;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.s, p.s);
+      });
+      if(++frame < 170) requestAnimationFrame(loop);
+      else ctx.clearRect(0,0,W,H);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
+  
